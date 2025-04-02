@@ -81,7 +81,7 @@ export const getAllMedicalRecordsJSON = async (req, res) => {
         }
         return {
           id: record.id,
-          medicalHistory: record.medicalHistory,
+          medicalHistory: record.medicalHistory.replace(/\n/g, "<br>"),
           isFile,
           user: { name: record.User.name, email: record.User.email },
           doctor: { name: record.Doctor.name, email: record.Doctor.email },

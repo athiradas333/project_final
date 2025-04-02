@@ -105,8 +105,15 @@
 
         <form onSubmit={handleSubmit} className="mb-8 bg-white p-4 rounded shadow">
           <div className="mb-4">
-            <label className="block text-gray-700 font-medium mb-2">Medical History (Text)</label>
-            <textarea name="medicalHistory" value={formData.medicalHistory} onChange={handleInputChange} className="w-full border rounded px-3 py-2" rows="4"></textarea>
+            <label className="block text-gray-700 font-medium mb-2">Medical prescription (Text)</label>
+            <textarea 
+              name="medicalHistory" 
+              value={formData.medicalHistory} 
+              onChange={handleInputChange} 
+              className="w-full border rounded px-3 py-2" 
+              rows="4"
+              style={{ whiteSpace: "pre-wrap" }} // 👈 Ensures line breaks are displayed correctly
+            ></textarea>
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 font-medium mb-2">Or Upload a File (PDF or text)</label>
@@ -142,7 +149,7 @@
                       {viewedPdf === fileUrl && <iframe src={fileUrl} title={`PDF-${record.id}`} className="w-full h-96 border mt-2"></iframe>}
                     </div>
                   ) : (
-                    <p>{record.medicalHistory}</p>
+                    <p dangerouslySetInnerHTML={{ __html: record.medicalHistory }}></p>
                   )}
                 </div>
               );

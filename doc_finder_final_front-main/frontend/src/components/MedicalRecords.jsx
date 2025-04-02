@@ -121,21 +121,12 @@ const MedicalRecords = () => {
 
       <form onSubmit={handleSubmit} className="mb-8 bg-white p-4 rounded shadow">
         <div className="mb-4">
-          <label htmlFor="medicalHistory" className="block text-gray-700 font-medium mb-2">
-            Medical History (Text)
-          </label>
-          <textarea 
-            id="medicalHistory"
-            name="medicalHistory"
-            value={formData.medicalHistory}
-            onChange={handleInputChange}
-            className="w-full border rounded px-3 py-2"
-            rows="4"
-          ></textarea>
+         
+        
         </div>
         <div className="mb-4">
           <label htmlFor="file" className="block text-gray-700 font-medium mb-2">
-            Or Upload a File (PDF or text)
+            Upload a File (PDF or text)
           </label>
           <input 
             type="file"
@@ -182,7 +173,7 @@ const MedicalRecords = () => {
                     </div>
                     {viewedPdf === fileUrl && <iframe src={fileUrl} title={`PDF-${record.id}`} className="w-full h-96 border mt-2"></iframe>}
                   </div>
-                ) : <p>{record.medicalHistory}</p>}
+                ) : <p dangerouslySetInnerHTML={{ __html: record.medicalHistory }}></p> }
                 {/* Delete button */}
                 <button 
                   onClick={() => handleDeleteRecord(record.id)}
